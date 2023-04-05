@@ -7,11 +7,10 @@ from scipy.stats import norm
 chat_id = 1067114867 # Ваш chat ID, не меняйте название переменной
 
 def solution(p: float, x: np.array) -> tuple:
-    # Измените код этой функции
-    # Это будет вашим решением
-    # Не меняйте название функции и её аргументы
-    alpha = 1 - p
-    max_x = np.max(x)
-    t = (max_x - 0.092) / alpha
-    t_alpha_2 = abs(t.ppf(alpha / 2, n-1))
-    return max_x - t_alpha_2 * (1 - p), max_x + t_alpha_2 * (1 - p)
+    alph1 = (1 - p) / 2
+    alph2 = (1 + p) / 2
+    n = x.size
+    a1 = pow(alph1, 1 / n)
+    a2 = pow(alph2, 1 / n)
+    x_max = x.max()
+    return (x_max - 0.092) / a2 + 0.092, (x_max - 0.092) / a1 + 0.092
